@@ -35,13 +35,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/511e446a/ArbreAbstrait.o \
-	${OBJECTDIR}/_ext/511e446a/Interpreteur.o \
-	${OBJECTDIR}/_ext/511e446a/Lecteur.o \
-	${OBJECTDIR}/_ext/511e446a/Symbole.o \
-	${OBJECTDIR}/_ext/511e446a/SymboleValue.o \
-	${OBJECTDIR}/_ext/511e446a/TableSymboles.o \
-	${OBJECTDIR}/_ext/511e446a/main.o
+	${OBJECTDIR}/Interpreteur.o \
+	${OBJECTDIR}/Lecteur.o \
+	${OBJECTDIR}/Symbole.o \
+	${OBJECTDIR}/SymboleValue.o \
+	${OBJECTDIR}/TableSymboles.o \
+	${OBJECTDIR}/main.o
 
 
 # C Compiler Flags
@@ -68,40 +67,35 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/m3105-tp5: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/m3105-tp5 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/511e446a/ArbreAbstrait.o: ../tp5/ArbreAbstrait.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/511e446a
+${OBJECTDIR}/Interpreteur.o: Interpreteur.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/511e446a/ArbreAbstrait.o ../tp5/ArbreAbstrait.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Interpreteur.o Interpreteur.cpp
 
-${OBJECTDIR}/_ext/511e446a/Interpreteur.o: ../tp5/Interpreteur.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/511e446a
+${OBJECTDIR}/Lecteur.o: Lecteur.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/511e446a/Interpreteur.o ../tp5/Interpreteur.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Lecteur.o Lecteur.cpp
 
-${OBJECTDIR}/_ext/511e446a/Lecteur.o: ../tp5/Lecteur.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/511e446a
+${OBJECTDIR}/Symbole.o: Symbole.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/511e446a/Lecteur.o ../tp5/Lecteur.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Symbole.o Symbole.cpp
 
-${OBJECTDIR}/_ext/511e446a/Symbole.o: ../tp5/Symbole.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/511e446a
+${OBJECTDIR}/SymboleValue.o: SymboleValue.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/511e446a/Symbole.o ../tp5/Symbole.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SymboleValue.o SymboleValue.cpp
 
-${OBJECTDIR}/_ext/511e446a/SymboleValue.o: ../tp5/SymboleValue.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/511e446a
+${OBJECTDIR}/TableSymboles.o: TableSymboles.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/511e446a/SymboleValue.o ../tp5/SymboleValue.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TableSymboles.o TableSymboles.cpp
 
-${OBJECTDIR}/_ext/511e446a/TableSymboles.o: ../tp5/TableSymboles.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/511e446a
+${OBJECTDIR}/main.o: main.cpp
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/511e446a/TableSymboles.o ../tp5/TableSymboles.cpp
-
-${OBJECTDIR}/_ext/511e446a/main.o: ../tp5/main.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/511e446a
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/511e446a/main.o ../tp5/main.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

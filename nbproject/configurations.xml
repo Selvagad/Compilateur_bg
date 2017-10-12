@@ -4,30 +4,29 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>../tp5/ArbreAbstrait.h</itemPath>
-      <itemPath>../tp5/Exceptions.h</itemPath>
-      <itemPath>../tp5/Interpreteur.h</itemPath>
-      <itemPath>../tp5/Lecteur.h</itemPath>
-      <itemPath>../tp5/Symbole.h</itemPath>
-      <itemPath>../tp5/SymboleValue.h</itemPath>
-      <itemPath>../tp5/TableSymboles.h</itemPath>
+      <itemPath>ArbreAbstrait.h</itemPath>
+      <itemPath>Exceptions.h</itemPath>
+      <itemPath>Interpreteur.h</itemPath>
+      <itemPath>Lecteur.h</itemPath>
+      <itemPath>Symbole.h</itemPath>
+      <itemPath>SymboleValue.h</itemPath>
+      <itemPath>TableSymboles.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
-      <itemPath>../tp5/motsCles.txt</itemPath>
-      <itemPath>../tp5/programme.txt</itemPath>
+      <itemPath>motsCles.txt</itemPath>
+      <itemPath>programme.txt</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>../tp5/ArbreAbstrait.cpp</itemPath>
-      <itemPath>../tp5/Interpreteur.cpp</itemPath>
-      <itemPath>../tp5/Lecteur.cpp</itemPath>
-      <itemPath>../tp5/Symbole.cpp</itemPath>
-      <itemPath>../tp5/SymboleValue.cpp</itemPath>
-      <itemPath>../tp5/TableSymboles.cpp</itemPath>
-      <itemPath>../tp5/main.cpp</itemPath>
+      <itemPath>Interpreteur.cpp</itemPath>
+      <itemPath>Lecteur.cpp</itemPath>
+      <itemPath>Symbole.cpp</itemPath>
+      <itemPath>SymboleValue.cpp</itemPath>
+      <itemPath>TableSymboles.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -51,37 +50,35 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="../tp5/ArbreAbstrait.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ArbreAbstrait.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/ArbreAbstrait.h" ex="false" tool="3" flavor2="0">
+      <item path="Exceptions.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/Exceptions.h" ex="false" tool="3" flavor2="0">
+      <item path="Interpreteur.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/Interpreteur.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Interpreteur.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/Interpreteur.h" ex="false" tool="3" flavor2="0">
+      <item path="Lecteur.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/Lecteur.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Lecteur.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/Lecteur.h" ex="false" tool="3" flavor2="0">
+      <item path="Symbole.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/Symbole.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Symbole.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/Symbole.h" ex="false" tool="3" flavor2="0">
+      <item path="SymboleValue.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/SymboleValue.cpp" ex="false" tool="1" flavor2="0">
+      <item path="SymboleValue.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/SymboleValue.h" ex="false" tool="3" flavor2="0">
+      <item path="TableSymboles.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/TableSymboles.cpp" ex="false" tool="1" flavor2="0">
+      <item path="TableSymboles.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/TableSymboles.h" ex="false" tool="3" flavor2="0">
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="motsCles.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/motsCles.txt" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../tp5/programme.txt" ex="false" tool="3" flavor2="0">
+      <item path="programme.txt" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -104,37 +101,35 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="../tp5/ArbreAbstrait.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ArbreAbstrait.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/ArbreAbstrait.h" ex="false" tool="3" flavor2="0">
+      <item path="Exceptions.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/Exceptions.h" ex="false" tool="3" flavor2="0">
+      <item path="Interpreteur.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/Interpreteur.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Interpreteur.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/Interpreteur.h" ex="false" tool="3" flavor2="0">
+      <item path="Lecteur.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/Lecteur.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Lecteur.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/Lecteur.h" ex="false" tool="3" flavor2="0">
+      <item path="Symbole.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/Symbole.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Symbole.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/Symbole.h" ex="false" tool="3" flavor2="0">
+      <item path="SymboleValue.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/SymboleValue.cpp" ex="false" tool="1" flavor2="0">
+      <item path="SymboleValue.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/SymboleValue.h" ex="false" tool="3" flavor2="0">
+      <item path="TableSymboles.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/TableSymboles.cpp" ex="false" tool="1" flavor2="0">
+      <item path="TableSymboles.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/TableSymboles.h" ex="false" tool="3" flavor2="0">
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../tp5/main.cpp" ex="false" tool="1" flavor2="0">
+      <item path="motsCles.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../tp5/motsCles.txt" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../tp5/programme.txt" ex="false" tool="3" flavor2="0">
+      <item path="programme.txt" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
