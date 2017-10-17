@@ -143,7 +143,9 @@ Noeud*  Interpreteur::instTantQue(){
    testerEtAvancer("(");
    Noeud* condition = expression(); // On mémorise la condition
    testerEtAvancer(")");
+   testerEtAvancer("{");
    Noeud* sequence = seqInst();     // On mémorise la séquence d'instruction
+   testerEtAvancer("}");
    testerEtAvancer("fintantque"); 
     
     
@@ -159,10 +161,17 @@ Noeud* Interpreteur::instEcrire(){
 }
 
 Noeud* Interpreteur::instLire(){
+    testerEtAvancer("lire"); 
+    testerEtAvancer("(");
+    Noeud* contenu = expression();
+    testerEtAvancer(")");
      return nullptr;
 }
 
 Noeud* Interpreteur::instPour(){
+    testerEtAvancer("pour");
+    testerEtAvancer("(");
+    Noeud* contenu =  expression();
      return nullptr;
 }
 

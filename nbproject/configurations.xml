@@ -21,6 +21,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>ArbreAbstrait.cpp</itemPath>
       <itemPath>Interpreteur.cpp</itemPath>
       <itemPath>Lecteur.cpp</itemPath>
       <itemPath>Symbole.cpp</itemPath>
@@ -50,6 +51,8 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="ArbreAbstrait.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="ArbreAbstrait.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Exceptions.h" ex="false" tool="3" flavor2="0">
@@ -101,6 +104,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="ArbreAbstrait.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="ArbreAbstrait.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Exceptions.h" ex="false" tool="3" flavor2="0">
