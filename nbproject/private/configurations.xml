@@ -25,9 +25,11 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"programme.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" programme.txt</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
-        <rundir></rundir>
+        <runcommand>"${OUTPUT_PATH}" programme.txt</runcommand>
+        <rundir>/users/info/etu-s3/selvagad/m3105/M3105-TP5/</rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>

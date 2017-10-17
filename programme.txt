@@ -1,9 +1,14 @@
 # Fichier de test
 # Les lignes de commentaires commencent par #
 procedure principale()
-  i = 12+3;
-  si (i>14)
-    j=1;
-  finsi
+i=0;
+siriche (i<2)
+    i=i+1;
+sinonsi (i=12){
+    i=12;
+sinon
+i=44;
+finsi
 finproc
+
 # Commentaire Final
