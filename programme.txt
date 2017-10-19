@@ -1,14 +1,8 @@
 # Fichier de test
 # Les lignes de commentaires commencent par #
 procedure principale()
-i=0;
-siriche (i<2)
-    i=i+1;
-sinonsi (i=12){
-    i=12;
-sinon
-i=44;
-finsi
+i = 0;
+ecrire(i+1,a,"salut");
 finproc
 
 # Commentaire Final
