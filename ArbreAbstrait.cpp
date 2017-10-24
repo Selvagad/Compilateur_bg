@@ -3,7 +3,7 @@
 #include "Symbole.h"
 #include "SymboleValue.h"
 #include "Exceptions.h"
-
+#include <typeinfo>
 ////////////////////////////////////////////////////////////////////////////////
 // NoeudSeqInst
 ////////////////////////////////////////////////////////////////////////////////
@@ -100,4 +100,35 @@ int NoeudInstRepeter::executer(){
 }
 
 
+NoeudInstEcrire::NoeudInstEcrire(){}
 
+int NoeudInstEcrire::ajoute(Noeud* parametre){
+     if (parametre!=nullptr) m_parametres.push_back(parametre);
+}
+
+int NoeudInstEcrire::executer(){
+    
+    for (int i=0;i<m_parametres.size();i++){
+        
+        if ( (typeid(*(m_parametres.at(i)))==typeid(SymboleValue) && *((SymboleValue*)m_parametres.at(i))== "<CHAINE>" )) {
+            cout <<((SymboleValue)*m_parametres.at(i)).getChaine();
+        }else cout << m_parametres.at(i)->executer();
+        
+        cout<<endl;
+    }
+}
+
+
+
+NoeudInstLire::NoeudInstLire(){}
+
+
+int NoeudInstLire::executer(){
+    
+    for (int i=0;i<m_parametres.size();i++){
+        int val;
+        cin >> val;
+        ((SymboleValue)*m_parametres.at(i)).setValeur(val);
+        
+    }
+}

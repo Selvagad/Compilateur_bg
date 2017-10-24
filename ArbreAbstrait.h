@@ -102,4 +102,24 @@ private:
     Noeud*  m_condition;
     Noeud*  m_sequence;
 };
+class NoeudInstEcrire : public Noeud {
+public:
+    NoeudInstEcrire();
+    ~NoeudInstEcrire(){}
+    int executer();
+    void ajoute(Noeud* parametre);
+private:
+    vector<Noeud *> m_parametres;
+};
+
+
+class NoeudInstLire : public Noeud {
+public:
+    NoeudInstLire();
+    ~NoeudInstLire(){}
+    int executer();
+    void ajoute(Noeud* parametre);
+private:
+    vector<Noeud *> m_parametres;
+};
 #endif /* ARBREABSTRAIT_H */

@@ -137,6 +137,7 @@ Noeud* Interpreteur::facteur() {
     return fact;
 }
 
+//
 Noeud* Interpreteur::instSi() {
     // <instSi> ::= si ( <expression> ) <seqInst> finsi
     try {
@@ -157,6 +158,7 @@ Noeud* Interpreteur::instSi() {
     return new NoeudInstSi(condition, sequence); // Et on renvoie un noeud Instruction Si
 }
 
+//<instTantQue>::=tantque(<expression>)<seqInst>fintantque
 Noeud* Interpreteur::instTantQue() {
     try {
         testerEtAvancer("tantque");
@@ -181,6 +183,7 @@ Noeud* Interpreteur::instTantQue() {
     return nullptr;
 }
 
+//<instEcrire>::=ecrire(<expression>|<chaine>{,<expression> | <chaine>})
 Noeud* Interpreteur::instEcrire() {
     try {
         testerEtAvancer("ecrire");
@@ -210,6 +213,7 @@ Noeud* Interpreteur::instEcrire() {
     return nullptr;
 }
 
+//<instLire>::=lire(<variable>{,<variable>})
 Noeud* Interpreteur::instLire() {
     try {
         testerEtAvancer("lire");
@@ -231,6 +235,7 @@ Noeud* Interpreteur::instLire() {
     return nullptr;
 }
 
+//<instPour>::=pour([<affectation>];<expression>;[<affectation>])<seqInst>finpour
 Noeud* Interpreteur::instPour() {
 
     try {
@@ -252,6 +257,7 @@ Noeud* Interpreteur::instPour() {
     return nullptr;
 }
 
+//<instRepeter>::=repeter<seqInst>jusqua(<expression>)
 Noeud* Interpreteur::instRepeter() {
     try {
         testerEtAvancer("repeter");
@@ -274,6 +280,7 @@ Noeud* Interpreteur::instRepeter() {
 
 }
 
+//<instSiRiche> ::=si(<expression>) <seqInst> {sinonsi(<expression>) <seqInst> }[sinon <seqInst>]finsi
 Noeud* Interpreteur::instSiRiche() {
     vector<Noeud*> conditions;
     vector<Noeud*> sequences;
