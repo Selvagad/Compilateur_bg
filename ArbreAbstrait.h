@@ -87,7 +87,7 @@ public:
     ~NoeudInstTantQue(){}
     int executer();
     
-private:
+protected: //pour avoir accès dans le pour
     Noeud*  m_condition;
     Noeud*  m_sequence;
 };
@@ -121,5 +121,27 @@ public:
     void ajoute(Noeud* parametre);
 private:
     vector<Noeud *> m_parametres;
+};
+
+class NoeudInstSiRiche : public Noeud {
+public:
+    NoeudInstSiRiche();
+    ~NoeudInstSiRiche(){}
+    int executer();
+    void ajouterE(Noeud* expression);
+    void ajouterS(Noeud* sequence);
+private:
+    vector<Noeud *> m_expressions;
+    vector<Noeud *> m_sequences;
+};
+
+class NoeudInstPour : public NoeudInstTantQue{
+public:
+    NoeudInstPour();
+    ~NoeudInstPour(){}
+    int executer();
+    
+private:
+    Noeud* m_affectationDeb;
 };
 #endif /* ARBREABSTRAIT_H */

@@ -99,10 +99,33 @@ int NoeudInstRepeter::executer(){
     return 0;
 }
 
+NoeudInstSiRiche::NoeudInstSiRiche(){} //appel automatique du constructeur vector
 
-NoeudInstEcrire::NoeudInstEcrire(){}
+void NoeudInstSiRiche::ajouterE(Noeud* expression){
+    if (expression!=nullptr) m_expressions.push_back(expression);
+}
+void NoeudInstSiRiche::ajouterS(Noeud* sequence){
+    if (sequence!=nullptr) m_sequences.push_back(sequence);
+}
 
-int NoeudInstEcrire::ajoute(Noeud* parametre){
+int NoeudInstSiRiche::executer(){
+    bool sin= false;
+    
+    for (int i=0; i< m_expressions.size();i++){
+            if (m_expressions.at(i)->executer()){
+                m_sequences.at(i)->executer();
+                sin = true;
+            }
+    }
+    if (sin !=true) {
+        m_sequences.at(m_sequences.size()-1);
+    }
+    return 0;
+}
+
+NoeudInstEcrire::NoeudInstEcrire(){}//appel automatique du constructeur vector
+
+void NoeudInstEcrire::ajoute(Noeud* parametre){
      if (parametre!=nullptr) m_parametres.push_back(parametre);
 }
 
@@ -116,11 +139,15 @@ int NoeudInstEcrire::executer(){
         
         cout<<endl;
     }
+    return 0;
 }
 
 
 
-NoeudInstLire::NoeudInstLire(){}
+
+
+
+NoeudInstLire::NoeudInstLire(){}//appel automatique du constructeur vector
 
 
 int NoeudInstLire::executer(){
@@ -131,4 +158,19 @@ int NoeudInstLire::executer(){
         ((SymboleValue)*m_parametres.at(i)).setValeur(val);
         
     }
+    return 0;
+}
+NoeudInstPour::NoeudInstPour(Noeud* affectationDeb, Noeud* conditionArret, Noeud* affectationFin, Noeud* sequence): NoeudInstTantQue(conditionArret, sequence), m_affectationDeb(affectationDeb) {
+    if (affectationFin != nullptr) {
+        m_sequence->ajoute(affectationFin) ; // on ajoute l'incrémentation à la séquence.
+    }
+}//
+
+int NoeudInstPour::executer() {
+    if (m_affectationDeb != nullptr) { // si la premiere affectation n'est pas nulle
+        m_affectationDeb->executer(); 
+    }
+    NoeudInstTantQue::executer();
+
+    return 0;
 }
