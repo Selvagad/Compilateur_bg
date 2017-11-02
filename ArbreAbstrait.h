@@ -19,6 +19,7 @@ class Noeud {
   public:
     virtual int  executer() =0 ; // Méthode pure (non implémentée) qui rend la classe abstraite
     virtual void ajoute(Noeud* instruction) { throw OperationInterditeException(); }
+    virtual void traduitEnCPP(ostream & cout, unsigned int indentation) const=0;
     virtual ~Noeud() {} // Présence d'un destructeur virtuel conseillée dans les classes abstraites
 };
 
@@ -31,6 +32,7 @@ class NoeudSeqInst : public Noeud {
     ~NoeudSeqInst() {} // A cause du destructeur virtuel de la classe Noeud
     int executer();    // Exécute chaque instruction de la séquence
     void ajoute(Noeud* instruction);  // Ajoute une instruction à la séquence
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
 
   private:
     vector<Noeud *> m_instructions; // pour stocker les instructions de la séquence
@@ -44,6 +46,7 @@ class NoeudAffectation : public Noeud {
      NoeudAffectation(Noeud* variable, Noeud* expression); // construit une affectation
     ~NoeudAffectation() {} // A cause du destructeur virtuel de la classe Noeud
     int executer();        // Exécute (évalue) l'expression et affecte sa valeur à la variable
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
 
   private:
     Noeud* m_variable;
@@ -59,6 +62,7 @@ class NoeudOperateurBinaire : public Noeud {
     // Construit une opération binaire : operandeGauche operateur OperandeDroit
    ~NoeudOperateurBinaire() {} // A cause du destructeur virtuel de la classe Noeud
     int executer();            // Exécute (évalue) l'opération binaire)
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
 
   private:
     Symbole m_operateur;
@@ -75,6 +79,7 @@ class NoeudInstSi : public Noeud {
      // Construit une "instruction si" avec sa condition et sa séquence d'instruction
    ~NoeudInstSi() {} // A cause du destructeur virtuel de la classe Noeud
     int executer();  // Exécute l'instruction si : si condition vraie on exécute la séquence
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
 
   private:
     Noeud*  m_condition;
@@ -86,6 +91,7 @@ public:
     NoeudInstTantQue(Noeud* condition, Noeud* sequence);
     ~NoeudInstTantQue(){}
     int executer();
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
     
 protected: //pour avoir accès dans le pour
     Noeud*  m_condition;
@@ -97,6 +103,7 @@ public:
     NoeudInstRepeter(Noeud* sequence, Noeud* condition);
     ~NoeudInstRepeter(){}
     int executer();
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
     
 private:
     Noeud*  m_condition;
@@ -104,35 +111,40 @@ private:
 };
 class NoeudInstEcrire : public Noeud {
 public:
-    NoeudInstEcrire(vector<Noeud*> parametres);
+    NoeudInstEcrire(std::vector<Noeud*> parametres);
     ~NoeudInstEcrire(){}
     int executer();
     void ajoute(Noeud* parametre);
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+    
 private:
-    vector<Noeud *> m_parametres;
+    std::vector<Noeud *> m_parametres;
 };
 
 
 class NoeudInstLire : public Noeud {
 public:
-    NoeudInstLire(vector<Noeud*> parametres);
+    NoeudInstLire(std::vector<Noeud*> parametres);
     ~NoeudInstLire(){}
     int executer();
     //void ajoute(Noeud* parametre);
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+    
 private:
-    vector<Noeud *> m_parametres;
+    std::vector<Noeud *> m_parametres;
 };
 
 class NoeudInstSiRiche : public Noeud {
 public:
-    NoeudInstSiRiche(vector<Noeud *> expressions, vector<Noeud *> sequences);
+    NoeudInstSiRiche(std::vector<Noeud *> expressions, std::vector<Noeud *> sequences);
     ~NoeudInstSiRiche(){}
     int executer();
     void ajouterE(Noeud* expression);
     void ajouterS(Noeud* sequence);
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
 private:
-    vector<Noeud *> m_expressions;
-    vector<Noeud *> m_sequences;
+    std::vector<Noeud *> m_expressions;
+    std::vector<Noeud *> m_sequences;
 };
 
 class NoeudInstPour : public NoeudInstTantQue{
@@ -140,6 +152,7 @@ public:
     NoeudInstPour(Noeud* affectationDeb, Noeud* conditionArret, Noeud* affectationFin, Noeud* sequence);
     ~NoeudInstPour(){}
     int executer();
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
     
 private:
     Noeud* m_affectationDeb;
