@@ -99,7 +99,7 @@ int NoeudInstRepeter::executer(){
     return 0;
 }
 
-NoeudInstSiRiche::NoeudInstSiRiche(){} //appel automatique du constructeur vector
+NoeudInstSiRiche::NoeudInstSiRiche(vector<Noeud *> expressions, vector<Noeud *> sequences):m_expressions(expressions),m_sequences(sequences){} //appel automatique du constructeur vector
 
 void NoeudInstSiRiche::ajouterE(Noeud* expression){
     if (expression!=nullptr) m_expressions.push_back(expression);
@@ -123,7 +123,7 @@ int NoeudInstSiRiche::executer(){
     return 0;
 }
 
-NoeudInstEcrire::NoeudInstEcrire(){}//appel automatique du constructeur vector
+NoeudInstEcrire::NoeudInstEcrire(vector<Noeud*> parametres):m_parametres(parametres){}//appel automatique du constructeur vector
 
 void NoeudInstEcrire::ajoute(Noeud* parametre){
      if (parametre!=nullptr) m_parametres.push_back(parametre);
@@ -134,7 +134,7 @@ int NoeudInstEcrire::executer(){
     for (int i=0;i<m_parametres.size();i++){
         
         if ( (typeid(*(m_parametres.at(i)))==typeid(SymboleValue) && *((SymboleValue*)m_parametres.at(i))== "<CHAINE>" )) {
-            cout <<((SymboleValue)*m_parametres.at(i)).getChaine();
+            cout <<((SymboleValue*)m_parametres.at(i))->getChaine();
         }else cout << m_parametres.at(i)->executer();
         
         cout<<endl;
@@ -147,7 +147,7 @@ int NoeudInstEcrire::executer(){
 
 
 
-NoeudInstLire::NoeudInstLire(){}//appel automatique du constructeur vector
+NoeudInstLire::NoeudInstLire(vector<Noeud*> parametres):m_parametres(parametres){}//appel automatique du constructeur vector
 
 
 int NoeudInstLire::executer(){
@@ -155,7 +155,7 @@ int NoeudInstLire::executer(){
     for (int i=0;i<m_parametres.size();i++){
         int val;
         cin >> val;
-        ((SymboleValue)*m_parametres.at(i)).setValeur(val);
+        ((SymboleValue*)m_parametres.at(i))->setValeur(val);
         
     }
     return 0;

@@ -2,7 +2,8 @@
 # Les lignes de commentaires commencent par #
 procedure principale()
 i = 0;
-ecrire(i+1,a,"salut");
+ecrire(i+1,"salut");
+
 finproc
 
 # Commentaire Final

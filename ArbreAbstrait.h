@@ -104,7 +104,7 @@ private:
 };
 class NoeudInstEcrire : public Noeud {
 public:
-    NoeudInstEcrire();
+    NoeudInstEcrire(vector<Noeud*> parametres);
     ~NoeudInstEcrire(){}
     int executer();
     void ajoute(Noeud* parametre);
@@ -115,17 +115,17 @@ private:
 
 class NoeudInstLire : public Noeud {
 public:
-    NoeudInstLire();
+    NoeudInstLire(vector<Noeud*> parametres);
     ~NoeudInstLire(){}
     int executer();
-    void ajoute(Noeud* parametre);
+    //void ajoute(Noeud* parametre);
 private:
     vector<Noeud *> m_parametres;
 };
 
 class NoeudInstSiRiche : public Noeud {
 public:
-    NoeudInstSiRiche();
+    NoeudInstSiRiche(vector<Noeud *> expressions, vector<Noeud *> sequences);
     ~NoeudInstSiRiche(){}
     int executer();
     void ajouterE(Noeud* expression);
@@ -137,7 +137,7 @@ private:
 
 class NoeudInstPour : public NoeudInstTantQue{
 public:
-    NoeudInstPour();
+    NoeudInstPour(Noeud* affectationDeb, Noeud* conditionArret, Noeud* affectationFin, Noeud* sequence);
     ~NoeudInstPour(){}
     int executer();
     
