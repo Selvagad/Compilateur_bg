@@ -4,6 +4,8 @@
 #include "SymboleValue.h"
 #include "Exceptions.h"
 #include <typeinfo>
+#include <iomanip>
+#include <random>
 ////////////////////////////////////////////////////////////////////////////////
 // NoeudSeqInst
 ////////////////////////////////////////////////////////////////////////////////
@@ -106,7 +108,10 @@ void NoeudInstSi::traduitEnCPP(ostream & cout, unsigned int indentation) const {
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////Tant Que/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
 NoeudInstTantQue::NoeudInstTantQue(Noeud* condition, Noeud* sequence) : m_condition(condition), m_sequence(sequence){}
 
 int NoeudInstTantQue::executer(){
@@ -123,7 +128,9 @@ void NoeudInstTantQue::traduitEnCPP(ostream & cout, unsigned int indentation) co
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////REPETER/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 
 NoeudInstRepeter::NoeudInstRepeter(Noeud* sequence, Noeud* condition) :m_sequence(sequence), m_condition(condition){}
 
@@ -144,7 +151,9 @@ void NoeudInstRepeter::traduitEnCPP(ostream & cout, unsigned int indentation) co
 
 
 
+///////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////SI RICHE /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 
 NoeudInstSiRiche::NoeudInstSiRiche(vector<Noeud *> expressions, vector<Noeud *> sequences):m_expressions(expressions),m_sequences(sequences){} //appel automatique du constructeur vector
 
@@ -172,8 +181,10 @@ int NoeudInstSiRiche::executer(){
 void NoeudInstSiRiche::traduitEnCPP(ostream & cout, unsigned int indentation) const {}
 
 
+///////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////ECRIRE ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////ECRIRE /////////////////////////////////////////////////////////
 
 NoeudInstEcrire::NoeudInstEcrire(vector<Noeud*> parametres):m_parametres(parametres){}//appel automatique du constructeur vector
 
@@ -193,12 +204,27 @@ int NoeudInstEcrire::executer(){
     }
     return 0;
 }
-void NoeudInstEcrire::traduitEnCPP(ostream & cout, unsigned int indentation) const {}
+void NoeudInstEcrire::traduitEnCPP(ostream & cout, unsigned int indentation) const {
+    cout<<setw(4*indentation)<<"" <<"cout <<";
+   
+    
+    for(int i=0; i<m_parametres.size();i++){
+        if(i==0){
+            m_parametres.at(0)->traduitEnCPP(cout,0);
+        }
+        cout<<"<<";
+        m_parametres.at(i)->traduitEnCPP(cout,0);
+        
+    }
+    cout<<setw(4*indentation)<<"<<endl;";
+
+}
 
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////LIRE /////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 
 NoeudInstLire::NoeudInstLire(vector<Noeud*> parametres):m_parametres(parametres){}//appel automatique du constructeur vector
 
@@ -213,11 +239,29 @@ int NoeudInstLire::executer(){
     }
     return 0;
 }
-void NoeudInstLire::traduitEnCPP(ostream & cout, unsigned int indentation) const {}
+void NoeudInstLire::traduitEnCPP(ostream & cout, unsigned int indentation) const {
+
+    
+    cout<<setw(4*indentation)<<""<<"cin >>";
+    
+    for(unsigned int i=0; i<m_parametres.size();i++){
+       
+        
+        if(i==0){
+            m_parametres.at(i)->traduitEnCPP(cout,0);
+                }
+            cout<<">>";
+            m_parametres.at(i)->traduitEnCPP(cout,0);
+            
+    }
+    cout<<";"<<endl;
+}
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////POUR /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
 
 NoeudInstPour::NoeudInstPour(Noeud* affectationDeb, Noeud* conditionArret, Noeud* affectationFin, Noeud* sequence): NoeudInstTantQue(conditionArret, sequence), m_affectationDeb(affectationDeb) {
     if (affectationFin != nullptr) {
@@ -233,4 +277,29 @@ int NoeudInstPour::executer() {
 
     return 0;
 }
-void NoeudInstPour::traduitEnCPP(ostream & cout, unsigned int indentation) const {}
+void NoeudInstPour::traduitEnCPP(ostream & cout, unsigned int indentation) const {
+
+    cout<<"for(";
+    if(m_affectationDeb){
+        m_affectationDeb->traduitEnCPP(cout,indentation);
+        cout<<";";
+    
+        m_condition->traduitEnCPP(cout,indentation);
+        cout<<";";
+    }
+    else{
+        m_condition->traduitEnCPP(cout,indentation);
+        cout<<"){";
+    }
+    
+    if(m_affectationDeb){   //s'il y a une afffectationDeb c'est un for avec 3 parametres
+        cout<<"i++){"<<endl;
+    }
+    
+    
+    m_sequence->traduitEnCPP(cout,indentation);
+    cout<<";"<<endl;
+    cout<<"}";
+    
+   
+}

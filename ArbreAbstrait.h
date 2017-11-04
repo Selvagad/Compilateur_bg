@@ -156,5 +156,6 @@ public:
     
 private:
     Noeud* m_affectationDeb;
+
 };
 #endif /* ARBREABSTRAIT_H */
