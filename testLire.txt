@@ -1,0 +1,16 @@
+# Test Lire
+# Resultat attendu :
+# Rentrer une valeur :
+# affichage de la valeur rentrée
+# Rentrer deux autres valeurs
+# affichage des deux autres valeurs
+
+procedure principale() 
+a=0;
+b=0;
+c=0;
+ecrire("Rentrer une valeur :");
+lire(a);
+ecrire("Rentrer deux autres valeurs :");
+lire(b,c);
+finproc

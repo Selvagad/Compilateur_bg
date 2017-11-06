@@ -1,0 +1,15 @@
+# Test du si 
+# Résultat attendu : 
+# test3 = 2 
+procedure principale() 
+test = 0 ; 
+test3 = 0;
+siriche ( test==3 ) 
+test1 = 1 ; 
+sinonsi (test==4)
+test2 = 1 ; 
+sinon 
+test3 = 2 ; 
+finsi ; 
+finproc  
+

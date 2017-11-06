@@ -4,6 +4,7 @@ finproc
 pour
 finpour
 si
+siriche
 sinon
 sinonsi
 finsi
@@ -13,6 +14,10 @@ repeter
 jusqua
 lire
 ecrire
+selon
+finselon
+cas
+defaut
 ;
 ,
 =

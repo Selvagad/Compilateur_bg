@@ -28,3 +28,6 @@ void SymboleValue::traduitEnCPP(ostream& cout, unsigned int indentation) const {
         cout << setw(4*indentation) <<""<< this->getChaine();
     
 }
+int SymboleValue::getVal(){
+    return m_valeur;
+}

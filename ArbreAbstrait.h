@@ -124,13 +124,14 @@ private:
 
 class NoeudInstLire : public Noeud {
 public:
-    NoeudInstLire(std::vector<Noeud*> parametres);
+    NoeudInstLire(Noeud* param,std::vector<Noeud*> parametres);
     ~NoeudInstLire(){}
     int executer();
     //void ajoute(Noeud* parametre);
     void traduitEnCPP(ostream & cout, unsigned int indentation) const;
     
 private:
+    Noeud*  m_param;
     std::vector<Noeud *> m_parametres;
 };
 
@@ -143,7 +144,7 @@ public:
     void ajouterS(Noeud* sequence);
     void traduitEnCPP(ostream & cout, unsigned int indentation) const;
 private:
-    std::vector<Noeud *> m_expressions;
+    std::vector<Noeud *> m_conditions;
     std::vector<Noeud *> m_sequences;
 };
 
@@ -156,6 +157,20 @@ public:
     
 private:
     Noeud* m_affectationDeb;
-
+    Noeud* m_affectationFin;
+};
+class NoeudInstSelon : public Noeud {
+public:
+    NoeudInstSelon(Noeud* var, Noeud* nb, Noeud* sequence,Noeud* sequenceDef,std::vector<Noeud *> sequences);
+    ~NoeudInstSelon(){}
+    int executer();
+    void ajouterS(Noeud* sequence);
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+private:
+    std::vector<Noeud *> m_sequences;
+    Noeud* m_var;
+    Noeud* m_nb;
+    Noeud* m_seq;
+    Noeud* m_seqDef;
 };
 #endif /* ARBREABSTRAIT_H */

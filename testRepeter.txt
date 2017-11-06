@@ -1,0 +1,11 @@
+# Test Repeter
+# Resultat attendu :
+# repeter repeter 
+
+procedure principale() 
+i =0;
+repeter
+    ecrire("repeter");
+    i=i+1;
+jusqua (i<2);
+finproc

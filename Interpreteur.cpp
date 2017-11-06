@@ -9,6 +9,11 @@ m_lecteur(fichier), m_table(), m_arbre(nullptr) {
 }
 
 void Interpreteur::traduitEnCPP(ostream & cout, unsigned int indentation) const {
+    cout << endl;
+        cout << "////////////////////////////////////////////" << endl;
+ cout << setw(4*indentation) << "" << "TRADUCTION EN C++" << endl;
+         cout << "////////////////////////////////////////////" << endl;
+         cout<<endl;
  cout << setw(4*indentation) << "" << "int main() {" << endl; // Début d’un programme C++
  // Ecrire en C++ la déclaration des variables présentes dans le programme...
  // ... variables dont on retrouvera le nom en parcourant la table des symboles !
@@ -72,7 +77,7 @@ Noeud* Interpreteur::seqInst() {
     NoeudSeqInst* sequence = new NoeudSeqInst();
     do {
         sequence->ajoute(inst());
-    } while (m_lecteur.getSymbole() == "<VARIABLE>" || m_lecteur.getSymbole() == "si" || m_lecteur.getSymbole() == "tantque" || m_lecteur.getSymbole() == "repeter" || m_lecteur.getSymbole() == "siriche" || m_lecteur.getSymbole() == "ecrire"|| m_lecteur.getSymbole() == "lire");
+    } while (m_lecteur.getSymbole() == "<VARIABLE>" || m_lecteur.getSymbole() == "si" || m_lecteur.getSymbole() == "tantque" || m_lecteur.getSymbole() == "repeter" || m_lecteur.getSymbole() == "siriche" || m_lecteur.getSymbole() == "ecrire"|| m_lecteur.getSymbole() == "lire" || m_lecteur.getSymbole() == "pour" || m_lecteur.getSymbole() == "selon");
     // Tant que le symbole courant est un début possible d'instruction...
     // Il faut compléter cette condition chaque fois qu'on rajoute une nouvelle instruction
     return sequence;
@@ -98,6 +103,10 @@ Noeud* Interpreteur::inst() {
         return instEcrire();
     else if (m_lecteur.getSymbole() == "lire")
         return instLire();
+    else if (m_lecteur.getSymbole() == "pour")
+        return instPour();
+    else if (m_lecteur.getSymbole() == "selon")
+        return instSelon();
         // Compléter les alternatives chaque fois qu'on rajoute une nouvelle instruction
     else erreur("Instruction incorrecte");
     }
@@ -251,23 +260,25 @@ Noeud* Interpreteur::instLire() {
         cout << "erreur lire";
     }
     Noeud* noeud1;
-    vector<Noeud*> paramslire;
+    Noeud* noeud;
+    vector<Noeud*> paramslire;  //le vecteur recoit les paramètres du lire et les stocke
     testerEtAvancer("(");
     if (m_lecteur.getSymbole() == "<VARIABLE>") {
         noeud1 = m_table.chercheAjoute(m_lecteur.getSymbole());
+        m_lecteur.avancer();
     }
     while (m_lecteur.getSymbole() == ",") {
         testerEtAvancer(",");
         if (m_lecteur.getSymbole() == "<VARIABLE>") {
-           noeud1 = m_table.chercheAjoute(m_lecteur.getSymbole());
-           paramslire.push_back(noeud1);
+           noeud = m_table.chercheAjoute(m_lecteur.getSymbole());
+           paramslire.push_back(noeud);
            m_lecteur.avancer();
            
         }
     }
     testerEtAvancer(")");
     testerEtAvancer(";");
-    return new NoeudInstLire(paramslire);
+    return new NoeudInstLire(noeud1,paramslire);
 }
 
 //<instPour>::=pour([<affectation>];<expression>;[<affectation>])<seqInst>finpour
@@ -320,30 +331,33 @@ Noeud* Interpreteur::instRepeter() {
 
 //<instSiRiche> ::=si(<expression>) <seqInst> {sinonsi(<expression>) <seqInst> }[sinon <seqInst>]finsi
 Noeud* Interpreteur::instSiRiche() {
-    vector<Noeud*> conditions;
-    vector<Noeud*> sequences;
+    vector<Noeud*> conditions;  //vecteur qui stocke les conditions 
+    vector<Noeud*> sequences;   //vecteur qui stocke les sequences 
     try {
         testerEtAvancer("siriche");
     } catch (SyntaxeException &e) {
         cout << "erreur siriche";
     }
-
+    
     testerEtAvancer("(");
-    Noeud* condition = expression();
-    conditions.push_back(condition);
+    Noeud* conditionSi = expression();  //1ere condition qui correspond au si
+    conditions.push_back(conditionSi);
     testerEtAvancer(")");
-    Noeud* sequence = seqInst();
-    sequences.push_back(sequence);
-    while(m_lecteur.getSymbole()=="sinonsi"){
+    Noeud* sequenceSi = seqInst();  //1ere sequence qui correspond au si
+    sequences.push_back(sequenceSi);
+    while(m_lecteur.getSymbole()=="sinonsi"){  //tant qu'il y a des sinonsi on récupère les conditions et les sequences des sinonsi
         testerEtAvancer("sinonsi");
         testerEtAvancer("(");
-        conditions.push_back(expression());
+        Noeud* conditionSinonSi = expression();
+        conditions.push_back(conditionSinonSi);
         testerEtAvancer(")");
-        sequences.push_back(seqInst());
+        Noeud* sequenceSinonSi = seqInst();
+        sequences.push_back(sequenceSinonSi);
     }
     if (m_lecteur.getSymbole() == "sinon"){
         testerEtAvancer("sinon");
-        sequences.push_back(seqInst());
+        Noeud* sequenceSinon = seqInst();
+        sequences.push_back(sequenceSinon);
     }
     try {
         testerEtAvancer("finsi");
@@ -352,4 +366,48 @@ Noeud* Interpreteur::instSiRiche() {
     }
     testerEtAvancer(";");
     return new NoeudInstSiRiche(conditions,sequences);
+}
+
+//<instSelon> ::=selon(<variable>) {cas <entier> : <seqInst>} defaut <seqInst> finselon;
+Noeud* Interpreteur::instSelon() {
+    vector<Noeud*> sequences;
+    try {
+            testerEtAvancer("selon");
+        } catch (SyntaxeException &e) {
+            cout << "erreur selon";
+        }
+    testerEtAvancer("(");
+    Noeud* var = m_table.chercheAjoute(m_lecteur.getSymbole());
+    m_lecteur.avancer();
+    testerEtAvancer(")");
+    testerEtAvancer("cas");
+    Noeud* nb = m_table.chercheAjoute(m_lecteur.getSymbole());
+    m_lecteur.avancer();
+    testerEtAvancer(":");
+    Noeud* sequence = seqInst();
+    Noeud* nb2;
+    Noeud* sequenceDefaut;
+     while(m_lecteur.getSymbole()=="cas"){
+        testerEtAvancer("cas");
+        nb2 = m_table.chercheAjoute(m_lecteur.getSymbole());
+        sequences.push_back(nb2);
+        m_lecteur.avancer();
+        testerEtAvancer(":");
+        Noeud* sequence2 = seqInst();
+        sequences.push_back(sequence2);
+        
+    }
+    if (m_lecteur.getSymbole() == "defaut"){
+        testerEtAvancer("defaut");
+        sequenceDefaut = seqInst();
+    }
+    try {
+        testerEtAvancer("finselon");
+    } catch (SyntaxeException &e) {
+        cout << "erreur finselon";
+    }
+    testerEtAvancer(";");
+    return new NoeudInstSelon(var,nb,sequence,sequenceDefaut,sequences);
+    
+    
 }

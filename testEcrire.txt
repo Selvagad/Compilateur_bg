@@ -1,0 +1,9 @@
+# Test Ecrire
+# Resultat attendu :
+# bonjour
+# 1
+
+procedure principale() 
+i=0;
+ecrire("bonjour",i+1);
+finproc

@@ -13,6 +13,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -24,11 +26,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"programme.txt</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" programme.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" testTantQue.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" testPour.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" testRepeter.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" testEcrire.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" testLire.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" testSi</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" testSiRiche.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" testSelon.txt</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" programme.txt</runcommand>
+        <runcommand>"${OUTPUT_PATH}" testSelon.txt</runcommand>
         <rundir>/users/info/etu-s3/selvagad/m3105/M3105-TP5/</rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

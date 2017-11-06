@@ -1,0 +1,11 @@
+# Test Pour
+# Resultat attendu :
+# salut salut salut
+
+procedure principale() 
+i=0;
+pour(j=0;j<3;j=j+1){
+ecrire("salut");
+}finpour;
+
+finproc

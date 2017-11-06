@@ -1,0 +1,18 @@
+# Test du selon
+# Les lignes de commentaires commencent par 
+
+procedure principale()
+
+a=3;
+
+selon(a)
+    cas 1: ecrire("salut");
+    cas 2: ecrire("trois");
+    cas 3 : ecrire("wsh alors");
+    defaut ecrire("ca marche");
+finselon;
+
+finproc
+
+# Commentaire final
+    

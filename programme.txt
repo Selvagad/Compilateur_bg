@@ -2,7 +2,9 @@
 # Les lignes de commentaires commencent par #
 procedure principale()
 i = 0;
-ecrire(i+1,"salut");
+pour(j=2;j<6;j=j+1){
+ecrire("salut");
+}finpour;
 
 finproc
 

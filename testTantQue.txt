@@ -1,0 +1,11 @@
+# Test Tant Que
+# Resultat attendu :
+# tantque tantque 
+# test = 2
+procedure principale() 
+test =0;
+tantque(test<2){
+ecrire("tantque");
+test=test+1;
+}fintantque;
+finproc
