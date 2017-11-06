@@ -229,7 +229,7 @@ Noeud* Interpreteur::instEcrire() {
     } catch (SyntaxeException &e) {
         cout << "erreur ecrire";
     }
-    vector<Noeud *> vect1;
+    vector<Noeud *> vect1;  //on déclare un vecteur qui va contenir tous les parametres saisis dans le ecrire
 
     testerEtAvancer("(");
     Noeud* noeud1;
@@ -237,8 +237,9 @@ Noeud* Interpreteur::instEcrire() {
         noeud1 = m_table.chercheAjoute(m_lecteur.getSymbole()); // on ajoute la variable ou l'entier à la table
         m_lecteur.avancer();
     }else{ noeud1 = expression();}
-    vect1.push_back(noeud1);
-    while (m_lecteur.getSymbole() == ",") {
+    vect1.push_back(noeud1);    //on enredistre le premier parametre (variable ou chaine)
+    
+    while (m_lecteur.getSymbole() == ",") {     //tant qu'il y a une virgule on avance, on lit le parametre et on l'ajoute au vecteur
         testerEtAvancer(",");
        
         if (m_lecteur.getSymbole() == "<CHAINE>") {
@@ -263,7 +264,7 @@ Noeud* Interpreteur::instLire() {
     Noeud* noeud;
     vector<Noeud*> paramslire;  //le vecteur recoit les paramètres du lire et les stocke
     testerEtAvancer("(");
-    if (m_lecteur.getSymbole() == "<VARIABLE>") {
+    if (m_lecteur.getSymbole() == "<VARIABLE>") { //on enredistre le premier parametre (variable)
         noeud1 = m_table.chercheAjoute(m_lecteur.getSymbole());
         m_lecteur.avancer();
     }
@@ -377,7 +378,7 @@ Noeud* Interpreteur::instSelon() {
             cout << "erreur selon";
         }
     testerEtAvancer("(");
-    Noeud* var = m_table.chercheAjoute(m_lecteur.getSymbole());
+    Noeud* var = m_table.chercheAjoute(m_lecteur.getSymbole());  //On recupère les infos du 1er cas
     m_lecteur.avancer();
     testerEtAvancer(")");
     testerEtAvancer("cas");
@@ -387,7 +388,7 @@ Noeud* Interpreteur::instSelon() {
     Noeud* sequence = seqInst();
     Noeud* nb2;
     Noeud* sequenceDefaut;
-     while(m_lecteur.getSymbole()=="cas"){
+     while(m_lecteur.getSymbole()=="cas"){          //et tant qu'il y a un cas on recupere les informations
         testerEtAvancer("cas");
         nb2 = m_table.chercheAjoute(m_lecteur.getSymbole());
         sequences.push_back(nb2);
@@ -397,7 +398,7 @@ Noeud* Interpreteur::instSelon() {
         sequences.push_back(sequence2);
         
     }
-    if (m_lecteur.getSymbole() == "defaut"){
+    if (m_lecteur.getSymbole() == "defaut"){    //si le lecteur lit defaut il va lancer prendre la sequence par defaut qu'on va rentrer
         testerEtAvancer("defaut");
         sequenceDefaut = seqInst();
     }
